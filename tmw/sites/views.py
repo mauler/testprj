@@ -8,5 +8,18 @@ class SiteList(ListView):
     model = Site
 
 
+class Summary(SiteList):
+    template_name = 'sites/summary.html'
+
+    def get_queryset(self, *ar, **kwargs):
+        qs = super().get_queryset(*ar, **kwargs)
+        qs = qs.summary()
+        return qs
+
+
+class SummaryAverage(Summary):
+    template_name = 'sites/summary_average.html'
+
+
 class SiteDetail(DetailView):
     model = Site
