@@ -1,0 +1,9 @@
+{% for values_entry in object.valuesentry_set.all %}
+
+    {{ values_entry.entry_date }}
+
+    {{ values_entry.value_a }}
+
+    {{ values_entry.value_b }}
+
+{% endfor %}
