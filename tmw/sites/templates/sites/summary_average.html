@@ -1,9 +1,28 @@
-{% for site in object_list %}
+{% extends 'sites/summary.html' %}
 
-    {{ site.name }}
-
-    {{ site.value_a_avg }}
-
-    {{ site.value_b_avg }}
-
-{% endfor %}
+{% block table %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Site
+                </th>
+                <th>
+                    A Value
+                </th>
+                <th>
+                    B Value
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for site in object_list %}
+                <tr>
+                  <td>{{ site }}</td>
+                  <td>{{ site.value_a_avg | floatformat:2 }}</td>
+                  <td>{{ site.value_b_avg | floatformat:2 }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock table %}

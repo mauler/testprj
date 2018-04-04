@@ -1,9 +1,44 @@
-{% for site in object_list %}
+{% extends 'sites/base.html' %}
 
-    {{ site.name }}
+{% block content %}
 
-    {{ site.value_a_sum }}
+<h1>Summary</h1>
 
-    {{ site.value_b_sum }}
+{% url 'summary' as url %}
+<a href="{{ url }}" class="btn btn-primary {% if url in request.get_full_path %}active{% endif %}">
+    Sum
+</a>
 
-{% endfor %}
+{% url 'summary_average' as url %}
+<a href="{{ url }}" class="btn btn-primary {% if url in request.get_full_path %}active{% endif %}">
+    Average
+</a>
+
+{% block table %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Site
+                </th>
+                <th>
+                    A Value
+                </th>
+                <th>
+                    B Value
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for site in object_list %}
+                <tr>
+                  <td>{{ site }}</td>
+                  <td>{{ site.get_value_a_sum }}</td>
+                  <td>{{ site.get_value_b_sum }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock table %}
+
+{% endblock %}
