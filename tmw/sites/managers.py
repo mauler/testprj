@@ -17,7 +17,6 @@ class SiteManagerQuerySet(QuerySet):
 
     def summary(self):
         """ Summarizes A, B values entries, returning average and sum. """
-
         return self.annotate(
             value_a_sum=Coalesce(Sum('valuesentry__value_a'), 0),
             value_b_sum=Coalesce(Sum('valuesentry__value_b'), 0),

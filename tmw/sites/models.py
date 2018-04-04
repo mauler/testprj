@@ -9,6 +9,9 @@ class Site(models.Model):
     objects = SiteManager()
     name = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.name
+
     def get_value_a_avg(self):
         """ Returns the average of A values from the site
 

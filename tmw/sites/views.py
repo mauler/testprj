@@ -12,7 +12,9 @@ class Summary(SiteList):
     template_name = 'sites/summary.html'
 
     def get_queryset(self, *ar, **kwargs):
+        """ Returns all sites with summarized values. """
         qs = super().get_queryset(*ar, **kwargs)
+        # Summarize the queryset
         qs = qs.summary()
         return qs
 
