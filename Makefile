@@ -5,4 +5,4 @@ help:
 
 .PHONY: test
 test:
-	python3 manage.py test tmw.sites
+	python3 manage.py test -v 2 tmw.sites
