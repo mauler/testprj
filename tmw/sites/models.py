@@ -1,6 +1,7 @@
 from django.db import models
 
 from tmw.fields import ValueField
+from tmw.helpers import avg
 from tmw.sites.managers import SiteManager
 
 
@@ -17,50 +18,28 @@ class Site(models.Model):
 
         :returns: Decimal
         """
-        avalues = []
-        for valuesentry in self.valuesentry_set.all():
-            avalues.append(valuesentry.value_a)
-
-        # Check for zero division error
-        if not avalues:
-            return 0
-        else:
-            return sum(avalues) / len(avalues)
+        return avg(self.valuesentry_set.values_list('value_a', flat=True))
 
     def get_value_b_avg(self):
         """ Returns the average of B values from the site
 
         :returns: Decimal
         """
-        bvalues = []
-        for valuesentry in self.valuesentry_set.all():
-            bvalues.append(valuesentry.value_b)
-
-        # Check for zero division error
-        if not bvalues:
-            return 0
-        else:
-            return sum(bvalues) / len(bvalues)
+        return avg(self.valuesentry_set.values_list('value_b', flat=True))
 
     def get_value_a_sum(self):
         """ Returns the sum of A values from the site
 
         :returns: Decimal
         """
-        avalues = []
-        for valuesentry in self.valuesentry_set.all():
-            avalues.append(valuesentry.value_a)
-        return sum(avalues)
+        return sum(self.valuesentry_set.values_list('value_a', flat=True))
 
     def get_value_b_sum(self):
         """ Returns the sum of B values from the site
 
         :returns: Decimal
         """
-        bvalues = []
-        for valuesentry in self.valuesentry_set.all():
-            bvalues.append(valuesentry.value_b)
-        return sum(bvalues)
+        return sum(self.valuesentry_set.values_list('value_b', flat=True))
 
 
 class ValuesEntry(models.Model):
