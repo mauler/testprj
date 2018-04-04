@@ -17,8 +17,12 @@ urlpatterns = [
          views.Summary.as_view(),
          name='summary'),
 
-    path('',
+    path('sites/',
          views.SiteList.as_view(),
          name='site_list'),
+
+    path('',
+         views.SiteList.as_view(),
+         name='index'),
 
 ]
