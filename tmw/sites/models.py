@@ -1,10 +1,12 @@
 from django.db import models
 
 from tmw.fields import ValueField
+from tmw.sites.managers import SiteManager
 
 
 class Site(models.Model):
     """ Hold Site basic information. """
+    objects = SiteManager()
     name = models.CharField(max_length=20)
 
 
