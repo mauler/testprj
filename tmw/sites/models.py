@@ -1,6 +1,6 @@
 from django.db import models
 
-from tmw.fields import ValueField
+from tmw.fields import ABValueField
 from tmw.helpers import avg
 from tmw.sites.managers import SiteManager
 
@@ -50,9 +50,9 @@ class ValuesEntry(models.Model):
 
     site = models.ForeignKey('Site', on_delete=models.PROTECT)
 
-    value_a = ValueField()
+    value_a = ABValueField()
 
-    value_b = ValueField()
+    value_b = ABValueField()
 
     entry_date = models.DateField()
 
