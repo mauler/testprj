@@ -23,17 +23,17 @@ class SummaryViewsTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
         # insert a/b values entries for demo_site
-        self.demo_site.valuesentry_set.create(entry_date=date(2012, 12, 1),
-                                              value_a=1,
-                                              value_b=2)
+        self.demo_site.abvalues.create(entry_date=date(2012, 12, 1),
+                                       value_a=1,
+                                       value_b=2)
 
-        self.demo_site.valuesentry_set.create(entry_date=date(2012, 12, 2),
-                                              value_a=1,
-                                              value_b=2)
+        self.demo_site.abvalues.create(entry_date=date(2012, 12, 2),
+                                       value_a=1,
+                                       value_b=2)
 
-        self.demo_site.valuesentry_set.create(entry_date=date(2012, 12, 3),
-                                              value_a=1,
-                                              value_b=5)
+        self.demo_site.abvalues.create(entry_date=date(2012, 12, 3),
+                                       value_a=1,
+                                       value_b=5)
 
     def test_summary(self):
         """ Ensure A, B values sum are for all sites are listed on the
@@ -91,17 +91,17 @@ class SiteViewsTestCase(BaseTestCase):
         """ Ensure all A, values entries are listed on site details. """
 
         # Create some entries
-        entry1 =  self.demo_site.valuesentry_set.create(
+        entry1 = self.demo_site.abvalues.create(
             entry_date=date(2012, 12, 1),
             value_a=123,
             value_b=321)
 
-        entry2 =  self.demo_site.valuesentry_set.create(
+        entry2 = self.demo_site.abvalues.create(
             entry_date=date(2012, 12, 2),
             value_a=789,
             value_b=987)
 
-        entry3 =  self.demo_site.valuesentry_set.create(
+        entry3 = self.demo_site.abvalues.create(
             entry_date=date(2012, 12, 3),
             value_a=456,
             value_b=654)

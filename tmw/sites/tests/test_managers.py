@@ -11,17 +11,17 @@ class ManagersTestCase(TestCase):
         # insert sample data into the database
         self.demo_site = Site.objects.create(name='Demo Site')
 
-        self.demo_site.valuesentry_set.create(entry_date=date(2012, 12, 1),
-                                              value_a=1,
-                                              value_b=2)
+        self.demo_site.abvalues.create(entry_date=date(2012, 12, 1),
+                                       value_a=1,
+                                       value_b=2)
 
-        self.demo_site.valuesentry_set.create(entry_date=date(2012, 12, 2),
-                                              value_a=1,
-                                              value_b=2)
+        self.demo_site.abvalues.create(entry_date=date(2012, 12, 2),
+                                       value_a=1,
+                                       value_b=2)
 
-        self.demo_site.valuesentry_set.create(entry_date=date(2012, 12, 3),
-                                              value_a=1,
-                                              value_b=5)
+        self.demo_site.abvalues.create(entry_date=date(2012, 12, 3),
+                                       value_a=1,
+                                       value_b=5)
 
         self.abc_site = Site.objects.create(name='ABC Site')
 

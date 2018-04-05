@@ -20,28 +20,28 @@ class Site(models.Model):
 
         :returns: Decimal
         """
-        return avg(self.valuesentry_set.values_list('value_a', flat=True))
+        return avg(self.abvalues.values_list('value_a', flat=True))
 
     def get_value_b_avg(self):
         """ Returns the average of B values from the site
 
         :returns: Decimal
         """
-        return avg(self.valuesentry_set.values_list('value_b', flat=True))
+        return avg(self.abvalues.values_list('value_b', flat=True))
 
     def get_value_a_sum(self):
         """ Returns the sum of A values from the site
 
         :returns: Decimal
         """
-        return sum(self.valuesentry_set.values_list('value_a', flat=True))
+        return sum(self.abvalues.values_list('value_a', flat=True))
 
     def get_value_b_sum(self):
         """ Returns the sum of B values from the site
 
         :returns: Decimal
         """
-        return sum(self.valuesentry_set.values_list('value_b', flat=True))
+        return sum(self.abvalues.values_list('value_b', flat=True))
 
 
 class ValuesEntry(models.Model):
@@ -50,7 +50,9 @@ class ValuesEntry(models.Model):
     - The entry date is unique for each Site.
     - A and B values should be a Decimal with 2 decimal places."""
 
-    site = models.ForeignKey('Site', on_delete=models.PROTECT)
+    site = models.ForeignKey('Site',
+                             on_delete=models.PROTECT,
+                             related_name='abvalues')
 
     value_a = ABValueField()
 

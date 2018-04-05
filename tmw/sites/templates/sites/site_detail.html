@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-            {% for values_entry in site.valuesentry_set.all %}
+            {% for values_entry in site.abvalues.all %}
             <tr>
               <td>{{ values_entry.entry_date }}</td>
               <td>{{ values_entry.value_a | floatformat:2 }}</td>

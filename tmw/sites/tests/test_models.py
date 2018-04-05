@@ -13,17 +13,17 @@ class SiteTestCase(TestCase):
         # insert sample data into the database
         self.demo_site = Site.objects.create(name='Demo Site')
 
-        self.demo_site.valuesentry_set.create(entry_date=date(2012, 12, 1),
-                                              value_a=1,
-                                              value_b=2)
+        self.demo_site.abvalues.create(entry_date=date(2012, 12, 1),
+                                       value_a=1,
+                                       value_b=2)
 
-        self.demo_site.valuesentry_set.create(entry_date=date(2012, 12, 2),
-                                              value_a=1,
-                                              value_b=2)
+        self.demo_site.abvalues.create(entry_date=date(2012, 12, 2),
+                                       value_a=1,
+                                       value_b=2)
 
-        self.demo_site.valuesentry_set.create(entry_date=date(2012, 12, 3),
-                                              value_a=1,
-                                              value_b=5)
+        self.demo_site.abvalues.create(entry_date=date(2012, 12, 3),
+                                       value_a=1,
+                                       value_b=5)
 
         self.abc_site = Site.objects.create(name='ABC Site')
 
@@ -67,9 +67,9 @@ class DatabaseIntegrityTestCase(TestCase):
         self.demo_site.delete()
 
         # Create some entries for ABC Site
-        self.abc_site.valuesentry_set.create(value_a=1,
-                                             value_b=2,
-                                             entry_date=date(2012, 12, 1))
+        self.abc_site.abvalues.create(value_a=1,
+                                      value_b=2,
+                                      entry_date=date(2012, 12, 1))
         with self.assertRaises(ProtectedError):
             self.abc_site.delete()
 
@@ -80,26 +80,26 @@ class DatabaseIntegrityTestCase(TestCase):
         day1 = date(2012, 12, 1)
         day2 = date(2012, 12, 2)
 
-        self.demo_site.valuesentry_set.create(entry_date=day1,
-                                              value_a=1,
-                                              value_b=2)
+        self.demo_site.abvalues.create(entry_date=day1,
+                                       value_a=1,
+                                       value_b=2)
 
-        self.demo_site.valuesentry_set.create(entry_date=day2,
-                                              value_a=1,
-                                              value_b=2)
+        self.demo_site.abvalues.create(entry_date=day2,
+                                       value_a=1,
+                                       value_b=2)
 
         # Creating A, B values entry for  a specific date in a different Site
-        self.abc_site.valuesentry_set.create(entry_date=day1,
-                                             value_a=1,
-                                             value_b=2)
+        self.abc_site.abvalues.create(entry_date=day1,
+                                      value_a=1,
+                                      value_b=2)
 
-        self.abc_site.valuesentry_set.create(entry_date=day2,
-                                             value_a=1,
-                                             value_b=2)
+        self.abc_site.abvalues.create(entry_date=day2,
+                                      value_a=1,
+                                      value_b=2)
 
         # Trying to create a A, B values entry for a existing date should
         # raise IntegrityError
         with self.assertRaises(IntegrityError):
-            self.abc_site.valuesentry_set.create(entry_date=day2,
-                                                 value_a=1,
-                                                 value_b=2)
+            self.abc_site.abvalues.create(entry_date=day2,
+                                          value_a=1,
+                                          value_b=2)
