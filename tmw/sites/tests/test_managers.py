@@ -40,7 +40,7 @@ class ManagersTestCase(TestCase):
         self.assertEqual(abc_site.value_b_avg, 0)
 
     def test_summary_for_site_with_entries(self):
-        """ Aggregate values a and b and returns it sums and average. """
+        """ Aggregate values a and b and returns it's sum and the average. """
         demo_site = Site.objects.summary().get(pk=self.demo_site.pk)
 
         # Checks value A and B sum

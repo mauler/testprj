@@ -41,7 +41,7 @@ class SiteTestCase(TestCase):
         self.assertEqual(self.abc_site.get_value_b_avg(), 0)
 
     def test_summary_for_site_with_entries(self):
-        """ Aggregate values a and b and returns it sums and average. """
+        """ Aggregate values a and b and returns it's sum and the average. """
 
         # Checks value A and B sum
         self.assertEqual(self.demo_site.get_value_a_sum(), 3)
@@ -60,8 +60,8 @@ class DatabaseIntegrityTestCase(TestCase):
         self.xyz_site = Site.objects.create(name='XYZ Site')
 
     def test_protect_deletion_of_sites_with_entries(self):
-        """ Check is the Site containings values entries are protected against
-        deletion. """
+        """ Check if the Site containings A,B values entries is protected
+        against deletion. """
 
         # Shouldn't raise error since Demo Site doesn't have any values entries
         self.demo_site.delete()
