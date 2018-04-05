@@ -10,7 +10,7 @@ test:
 
 .PHONY: quick-run
 run:
-	python3 -m pip install -r requirements.txt
+	python3 -m pip install -r requirements/development.txt
 	python3 manage.py migrate
 	python3 manage.py loaddata initial_data
 	python3 manage.py runserver
