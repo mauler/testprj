@@ -6,7 +6,7 @@ help:
 
 .PHONY: test
 test:
-	python3 manage.py test -v 2 tmw.sites
+	python3 -m pytest
 
 .PHONY: quick-run
 run:
